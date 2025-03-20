@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm" action="/login" method="POST">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p id="message" style="color: green; display: none;"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio tradicional
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            if (!username || !password) {
+                message.textContent = "Por favor, preencha todos os campos.";
+                message.style.color = "red";
+                message.style.display = "block";
+                return;
+            }
+
+            message.textContent = `Login successful! Welcome, ${username}.`;
+            message.style.color = "green";
+            message.style.display = "block";
+
+            // Após exibir a mensagem, o formulário pode ser enviado automaticamente
+            setTimeout(() => {
+                document.getElementById('loginForm').submit();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
